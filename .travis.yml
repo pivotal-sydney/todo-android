@@ -3,3 +3,5 @@ android:
   components:
     - build-tools-23
     - android-23
+    - build-tools-24
+    - android-24
