@@ -29,6 +29,16 @@ public class MainActivityTest {
     public void activity_hasListOfTasks() {
         RecyclerView recyclerView = subject.getTaskListRecyclerView();
         assertThat(recyclerView.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
-        assertThat(recyclerView.getAdapter().getItemCount()).isEqualTo(2);
+        assertThat(recyclerView.getAdapter().getItemCount()).isEqualTo(0);
+    }
+
+    @Test
+    public void addTask_addsTheCurrentTextValueToAdapterItems() {
+        RecyclerView recyclerView = subject.getTaskListRecyclerView();
+        assertThat(recyclerView.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
+        assertThat(recyclerView.getAdapter().getItemCount()).isEqualTo(0);
+
+        subject.getAddTaskButton().callOnClick();
+        assertThat(recyclerView.getAdapter().getItemCount()).isEqualTo(1);
     }
 }
