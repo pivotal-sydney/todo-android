@@ -26,7 +26,7 @@ public class TaskListAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        TaskViewHolder taskViewHolder = (TaskViewHolder)holder;
+        TaskViewHolder taskViewHolder = (TaskViewHolder) holder;
         taskViewHolder.textView.setText(tasks.get(position));
     }
 

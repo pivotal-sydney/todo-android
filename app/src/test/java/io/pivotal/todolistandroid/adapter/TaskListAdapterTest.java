@@ -1,6 +1,5 @@
 package io.pivotal.todolistandroid.adapter;
 
-import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
