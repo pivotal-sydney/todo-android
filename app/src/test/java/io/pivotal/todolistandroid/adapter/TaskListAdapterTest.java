@@ -39,9 +39,9 @@ public class TaskListAdapterTest {
     @Test
     public void addTask_addsTheTaskToTheTasks() {
         TaskListAdapter taskListAdapter = new TaskListAdapter(new ArrayList<String>());
-        taskListAdapter.addTask("New Task");
+        taskListAdapter.addTask("This is a New Task");
         assertThat(taskListAdapter.getItemCount()).isEqualTo(1);
-        assertThat(taskListAdapter.getTasks().get(0)).isEqualTo("New Task");
+        assertThat(taskListAdapter.getTasks().get(0)).isEqualTo("This is a New Task");
     }
 
 }

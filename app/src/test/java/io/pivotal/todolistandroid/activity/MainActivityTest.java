@@ -13,6 +13,9 @@ import org.robolectric.annotation.Config;
 import io.pivotal.todolistandroid.BuildConfig;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 18)
@@ -23,6 +26,7 @@ public class MainActivityTest {
     @Before
     public void setup() {
         subject = Robolectric.setupActivity(MainActivity.class);
+        subject.adapter = spy(subject.adapter);
     }
 
     @Test
@@ -38,7 +42,11 @@ public class MainActivityTest {
         assertThat(recyclerView.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
         assertThat(recyclerView.getAdapter().getItemCount()).isEqualTo(0);
 
+        subject.getInput().setText("A New Task");
         subject.getAddTaskButton().callOnClick();
         assertThat(recyclerView.getAdapter().getItemCount()).isEqualTo(1);
+        assertThat(subject.getInput().getText()).isEmpty();
+
+        verify(subject.adapter).addTask(eq("A New Task"));
     }
 }

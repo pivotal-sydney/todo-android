@@ -12,10 +12,19 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/input">
 
     </android.support.v7.widget.RecyclerView>
 
+    <EditText
+        android:id="@+id/input"
+        android:maxLines="1"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/add_task"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_task"

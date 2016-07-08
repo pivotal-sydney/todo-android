@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.add_task)
     FloatingActionButton addTaskButton;
 
+    @BindView(R.id.input)
+    EditText input;
+
+    TaskListAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,14 +35,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
         ButterKnife.bind(this);
 
-        final TaskListAdapter adapter = new TaskListAdapter(new ArrayList<String>());
+        adapter = new TaskListAdapter(new ArrayList<String>());
         taskListRecyclerView.setAdapter(adapter);
         taskListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adapter.addTask("New Task");
+                adapter.addTask(input.getText().toString());
+                input.getText().clear();
             }
         });
     }
@@ -47,5 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
     public FloatingActionButton getAddTaskButton() {
         return addTaskButton;
+    }
+
+    public EditText getInput() {
+        return input;
     }
 }
