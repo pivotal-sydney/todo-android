@@ -1,7 +1,6 @@
 language: android
 sudo: required
-dist: trusty
-group: edge
+dist: precise
 android:
   components:
     - tools
