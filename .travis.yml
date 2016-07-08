@@ -30,4 +30,4 @@ deploy:
   acl: public_read
   on:
     repo: pivotal-sydney/todo-android
-
+  region: ap-southeast-2
