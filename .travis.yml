@@ -10,6 +10,15 @@ android:
     - android-23
     - extra-google-m2repository
     - extra-android-m2repository
+before_install:
+    - rm -rf ~/.linuxbrew
+    - yes | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
+    - export PATH="$HOME/.linuxbrew/bin:$PATH"
+    - export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+    - export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+    - brew install jdk
+    - brew install scala
+    - brew install sbt
 script: ./gradlew test assD
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
