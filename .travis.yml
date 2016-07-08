@@ -5,4 +5,12 @@ android:
     - platform-tools
     - build-tools-24.0.0
     - android-23
+    - extra-android-support
 script: ./gradlew clean test assD
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
