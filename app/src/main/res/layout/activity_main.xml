@@ -33,4 +33,13 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:src="@android:drawable/ic_input_add" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:src="@android:drawable/ic_secure" />
+
 </RelativeLayout>

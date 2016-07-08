@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.shadows.ShadowActivity;
 
 import io.pivotal.todolistandroid.BuildConfig;
 
@@ -16,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
+import static org.robolectric.Shadows.shadowOf;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 18)
@@ -43,10 +45,22 @@ public class MainActivityTest {
         assertThat(recyclerView.getAdapter().getItemCount()).isEqualTo(0);
 
         subject.getInput().setText("A New Task");
-        subject.getAddTaskButton().callOnClick();
+        subject.addTaskButton.performClick();
         assertThat(recyclerView.getAdapter().getItemCount()).isEqualTo(1);
         assertThat(subject.getInput().getText()).isEmpty();
 
         verify(subject.adapter).addTask(eq("A New Task"));
+    }
+
+
+    @Test
+    public void login_addsTheCurrentTextValueToAdapterItems() {
+        RecyclerView recyclerView = subject.getTaskListRecyclerView();
+        assertThat(recyclerView.getLayoutManager()).isOfAnyClassIn(LinearLayoutManager.class);
+        assertThat(recyclerView.getAdapter().getItemCount()).isEqualTo(0);
+
+        subject.loginButton.performClick();
+        ShadowActivity.IntentForResult intent = shadowOf(subject).getNextStartedActivityForResult();
+        assertThat(intent.requestCode).isEqualTo(1000);
     }
 }
