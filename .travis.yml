@@ -26,7 +26,7 @@ deploy:
     secure: Y58qQ5WntVtGWgPrP4q3vzcNKr4C6LNXPhVF92xadu5t2Bf13ZH5mhyb5qrjLasxNMAmvsUtseMb4I4YW+eUsVDiIpxkh3YKLYsJjpi0w4Q7CJSjHUXSxEZW/7vH8NItugoouOtbb8hXJdd0aGlUe+YBxkViWORbbFTBp/FQZyH14h0hEbV1zCdMm8pcicZFz5CFI2huqO1qa7m8YHrgePWNXRXi0sd01mUPlooenjCkk6Uit6x5DqHTC3uq5uxbqgf9bSH/fhpyWp5YzrMWflvypMRxM+CqlZkSVKMuONAIVznZcTxjO53AJ6ue4/gZQFYIDUFoOOvCg7apnRcrnDoK2PviXVZ6w5F+8JS8bo+zVCXjCGqV3BWZqLdn2s1DTlEB57KrpGWNrUZ8ossVIYwygFyf/oIYsFWIALlbdHUmW0MCD4U0IXyowxYta//ewhMFcRKv5qYUNKdPT7/HnNicsC54t/m5FM1plUaYivjxtgXYAg0vF7bP/BvwHcGzdCfsXhEEqbGlp3Hv5HctswIzMu0pU+djQjVCqIodX0yP2wfKOJbVNsssW03vYY/cgeMhKF76XUrQgZfNj3OuAllBOCI+JaS4/HoiXKJstOwxcXcLFWbPkIheea4nmaivwg4jRT3zQtgNio0wnLp+h2PnoPZbA21gglOTZtsT9bc=
   bucket: todo-android
   skip_cleanup: true
-  local-dir: app/build/outputs/apk/app-debug
+  local-dir: app/build/outputs/apk
   acl: public_read
   on:
     repo: pivotal-sydney/todo-android
