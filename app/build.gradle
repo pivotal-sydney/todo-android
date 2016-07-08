@@ -21,8 +21,7 @@ android {
         }
     }
     dexOptions {
-        javaMaxHeapSize "1024M"
-        preDexLibraries = false
+        javaMaxHeapSize "4g"
     }
     lintOptions {
         abortOnError false
