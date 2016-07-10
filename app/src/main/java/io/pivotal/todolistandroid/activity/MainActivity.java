@@ -24,7 +24,7 @@ import io.pivotal.todolistandroid.task.GetUsernameTask;
 
 public class MainActivity extends AppCompatActivity {
 
-    String SCOPE = "oauth2:https://www.googleapis.com/auth/userinfo.profile";
+    String SCOPE = "oauth2:https://www.googleapis.com/auth/userinfo.email";
     static final int REQUEST_CODE_PICK_ACCOUNT = 1000;
 
     @BindView(R.id.list_view)
