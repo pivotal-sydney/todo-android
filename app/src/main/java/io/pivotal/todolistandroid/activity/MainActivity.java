@@ -14,13 +14,22 @@ import com.google.android.gms.common.AccountPicker;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.pivotal.todolistandroid.R;
+import io.pivotal.todolistandroid.TodoApplication;
+import io.pivotal.todolistandroid.TodoRestService;
+import io.pivotal.todolistandroid.adapter.TaskListAdapter;
 import io.pivotal.todolistandroid.googlelogin.GoogleAuthUtilClient;
 import io.pivotal.todolistandroid.googlelogin.GoogleLoginExceptionHandler;
-import io.pivotal.todolistandroid.R;
-import io.pivotal.todolistandroid.adapter.TaskListAdapter;
+import io.pivotal.todolistandroid.model.Task;
+import io.pivotal.todolistandroid.model.Tasks;
 import io.pivotal.todolistandroid.task.GetUsernameTask;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,9 +50,14 @@ public class MainActivity extends AppCompatActivity {
 
     TaskListAdapter adapter;
 
+    @Inject
+    TodoRestService todoRestService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TodoApplication.getApplication().getApplicationComponent().inject(this);
+
         View view = View.inflate(this, R.layout.activity_main, null);
         setContentView(view);
         ButterKnife.bind(this);
@@ -51,6 +65,20 @@ public class MainActivity extends AppCompatActivity {
         adapter = new TaskListAdapter(new ArrayList<String>());
         taskListRecyclerView.setAdapter(adapter);
         taskListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        todoRestService.getTasks().enqueue(new Callback<Tasks>() {
+            @Override
+            public void onResponse(Call<Tasks> call, Response<Tasks> response) {
+                for(Task t : response.body().tasks) {
+                    adapter.addTask(t.description);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Tasks> call, Throwable t) {
+
+            }
+        });
 
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
